@@ -32,23 +32,12 @@ public class Movie {
     private String genre;
 
     @Column(name = "release_year", length = 4)
-    private String releaseYear;
+    private Integer releaseYear;
 
     @Column(name = "duration")
-    private double duration;
+    private Integer duration;
 
     public Movie() {
-    }
-
-    public Movie(UUID id, LocalDateTime createAt, LocalDateTime updateAt, String title, String description, String genre, String releaseYear, double duration) {
-        this.id = id;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-        this.title = title;
-        this.description = description;
-        this.genre = genre;
-        this.releaseYear = releaseYear;
-        this.duration = duration;
     }
 
     public UUID getId() {
@@ -99,19 +88,19 @@ public class Movie {
         this.genre = genre;
     }
 
-    public String getReleaseYear() {
+    public Integer getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(String releaseYear) {
+    public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
     }
 
-    public double getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(double duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 }
