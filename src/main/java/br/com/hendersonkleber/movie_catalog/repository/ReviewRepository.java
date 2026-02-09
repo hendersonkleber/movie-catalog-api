@@ -1,0 +1,9 @@
+package br.com.hendersonkleber.movie_catalog.repository;
+
+import br.com.hendersonkleber.movie_catalog.domain.Review;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import java.util.UUID;
+
+public interface ReviewRepository extends MongoRepository<Review, UUID> {
+}
