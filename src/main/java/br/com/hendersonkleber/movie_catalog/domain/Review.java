@@ -26,6 +26,14 @@ public class Review {
     public Review() {
     }
 
+    public Review(String id, String movieId, double rating, String comment) {
+        this.id = id;
+        this.createAt = LocalDateTime.now();
+        this.movieId = movieId;
+        this.rating = rating;
+        this.comment = comment;
+    }
+
     public String getId() {
         return id;
     }
