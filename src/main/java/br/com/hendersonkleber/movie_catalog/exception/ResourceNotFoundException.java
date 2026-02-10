@@ -18,7 +18,7 @@ public class ResourceNotFoundException extends ApiException {
         var status = HttpStatus.NOT_FOUND;
         var problem = ProblemDetail.forStatus(status);
 
-        problem.setTitle("API exception");
+        problem.setTitle(status.getReasonPhrase());
         problem.setDetail(this.message);
         problem.setProperty("timestamp", LocalDateTime.now());
 

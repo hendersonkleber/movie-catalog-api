@@ -18,7 +18,7 @@ public abstract class ApiException extends RuntimeException {
         var status = HttpStatus.INTERNAL_SERVER_ERROR;
         var problem = ProblemDetail.forStatus(status);
 
-        problem.setTitle("API exception");
+        problem.setTitle(status.getReasonPhrase());
         problem.setDetail("Contact support");
         problem.setProperty("timestamp", LocalDateTime.now());
 
