@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private String id;
 
     @CreationTimestamp
     @Column(name = "create_at")
@@ -32,19 +32,19 @@ public class Movie {
     private String genre;
 
     @Column(name = "release_year", length = 4)
-    private Integer releaseYear;
+    private int releaseYear;
 
     @Column(name = "duration")
-    private Integer duration;
+    private int duration;
 
     public Movie() {
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -88,19 +88,19 @@ public class Movie {
         this.genre = genre;
     }
 
-    public Integer getReleaseYear() {
+    public int getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(Integer releaseYear) {
+    public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
 
-    public Integer getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 }

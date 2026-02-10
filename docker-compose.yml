@@ -1,27 +1,28 @@
 services:
   movies-db:
     image: postgres:17-alpine
-    restart: always
+    container_name: movies-db
     env_file:
       - ./.env
     volumes:
       - movie-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=${MOVIE_DB_NAME}
-      - POSTGRES_USER=${MOVIE_DB_USER}
-      - POSTGRES_PASSWORD=${MOVIE_DB_PASSWORD}
+      POSTGRES_DB: ${MOVIE_DB_NAME}
+      POSTGRES_USER: ${MOVIE_DB_USER}
+      POSTGRES_PASSWORD: ${MOVIE_DB_PASSWORD}
     ports:
-      - '${MOVIE_DB_PORT}:${MOVIE_DB_PORT}'
+      - '${MOVIE_DB_PORT}:5432'
+
   reviews-db:
     image: mongo:8.2.4
+    container_name: reviews-db
     environment:
-      - MONGO_INITDB_DATABASE=${REVIEW_DB_NAME}
-      - MONGO_INITDB_ROOT_USERNAME=${REVIEW_DB_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${REVIEW_DB_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: ${REVIEW_DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${REVIEW_DB_PASSWORD}
     ports:
-      - '${REVIEW_DB_PORT}:${REVIEW_DB_PORT}'
+      - '${REVIEW_DB_PORT}:27017'
     volumes:
-      - review-data:/var/lib/mongodb/data
+      - review-data:/data/db
 
 volumes:
   movie-data: {}
