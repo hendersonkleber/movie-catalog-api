@@ -1,10 +1,13 @@
 package br.com.hendersonkleber.movie_catalog.dto;
 
-import java.util.UUID;
+import br.com.hendersonkleber.movie_catalog.domain.Review;
 
 public record ReviewResponse(
-        UUID id,
+        String id,
         String comment,
-        Double rating
+        double rating
 ) {
+    public static ReviewResponse fromEntity(Review entity) {
+        return new ReviewResponse(entity.getId(), entity.getComment(), entity.getRating());
+    }
 }

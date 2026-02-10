@@ -5,11 +5,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record ReviewRequest(
+        @NotBlank(message = "Movie ID is required")
+        String movieId,
+
         @NotBlank(message = "Comment is required")
         String comment,
 
         @NotNull(message = "Rating is required")
         @DecimalMin(value = "1.0", message = "Rating must be greater than or equal to one")
-        Double rating
+        double rating
 ) {
 }
