@@ -1,9 +1,11 @@
 package br.com.hendersonkleber.movie_catalog.controller;
 
+import br.com.hendersonkleber.movie_catalog.dto.MovieDetailResponse;
 import br.com.hendersonkleber.movie_catalog.dto.MovieRequest;
 import br.com.hendersonkleber.movie_catalog.dto.MovieResponse;
 import br.com.hendersonkleber.movie_catalog.dto.PaginatedResponse;
 import br.com.hendersonkleber.movie_catalog.service.MovieService;
+import br.com.hendersonkleber.movie_catalog.service.ReviewService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/movies")
 public class MovieController {
     private final MovieService movieService;
+    private final ReviewService reviewService;
 
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, ReviewService reviewService) {
         this.movieService = movieService;
+        this.reviewService = reviewService;
     }
 
     @GetMapping
@@ -44,12 +48,12 @@ public class MovieController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<MovieResponse> getById(
-            @PathVariable
-            String id
-    ){
+    public ResponseEntity<MovieDetailResponse> getById(@PathVariable String id){
         var entity = this.movieService.getById(id);
-        var response = MovieResponse.fromEntity(entity);
+        var reviews = this.reviewService.getAll(entity.getId(), 0, 5);
+
+        var response = MovieDetailResponse.fromEntities(entity, reviews.getContent());
+
         return ResponseEntity.ok(response);
     }
 
