@@ -3,6 +3,7 @@ package br.com.hendersonkleber.movie_catalog.domain;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -38,6 +39,17 @@ public class Movie {
     private int duration;
 
     public Movie() {
+    }
+
+    public Movie(String id, String title, String description, String genre, int releaseYear, int duration) {
+        this.id = id;
+        this.createAt = LocalDateTime.now();
+        this.updateAt = LocalDateTime.now();
+        this.title = title;
+        this.description = description;
+        this.genre = genre;
+        this.releaseYear = releaseYear;
+        this.duration = duration;
     }
 
     public String getId() {

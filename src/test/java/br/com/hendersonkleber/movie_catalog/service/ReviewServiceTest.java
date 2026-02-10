@@ -67,7 +67,7 @@ class ReviewServiceTest {
             var limit = 10;
 
             var pageRequest = PageRequest.of(page, limit, Sort.Direction.DESC, "createAt");
-            var pageContent = new ArrayList<>();
+            var pageContent = List.of();
             var pageResponse = new PageImpl<>(pageContent, pageRequest, 0);
 
             doReturn(pageResponse).when(reviewRepository).findAll(movieId, pageRequest);
@@ -79,7 +79,7 @@ class ReviewServiceTest {
             verify(reviewRepository, times(1)).findAll(movieId, pageRequest);
 
             assertNotNull(response);
-            assertEquals(pageContent.size(), response.getContent().size());
+            assertEquals(0, response.getContent().size());
             assertEquals(0, response.getTotalElements());
             assertEquals(0, response.getTotalPages());
         }
